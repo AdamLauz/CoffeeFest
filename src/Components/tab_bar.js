@@ -1,3 +1,17 @@
+const FBSDK = require('react-native-fbsdk');
+const {
+  GraphRequest,
+  GraphRequestManager,
+} = FBSDK;
+
+_responseInfoCallback(error: ?Object, result: ?Object) {
+  if (error) {
+    alert('Error fetching data: ' + error.toString());
+  } else {
+    alert('Success fetching data: ' + result.toString());
+  }
+}
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -43,6 +57,39 @@ class TabBarExample extends React.Component {
         } else {
           alert('Login was successful with permissions: '
             + result.grantedPermissions.toString());
+
+            AccessToken.getCurrentAccessToken().then(
+              (data) => {
+                let accessToken = data.accessToken
+                alert(accessToken.toString())
+
+                const responseInfoCallback = (error, result) => {
+                  if (error) {
+                    console.log(error)
+                    alert('Error fetching data: ' + error.toString());
+                  } else {
+                    console.log(result)
+                    alert('Success fetching data: ' + result.toString());
+                  }
+                }
+
+                const infoRequest = new GraphRequest(
+                  '/me',
+                  {
+                    accessToken: accessToken,
+                    parameters: {
+                      fields: {
+                        string: 'id,name,picture'
+                      }
+                    }
+                  },
+                  responseInfoCallback
+                );
+
+                // Start the graph request.
+                new GraphRequestManager().addRequest(infoRequest).start();
+
+
         }
       },
       function(error) {

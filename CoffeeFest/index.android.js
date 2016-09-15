@@ -3,19 +3,6 @@
  * https://github.com/facebook/react-native
  * @flow
  */
- 
- <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
- <script>
-   // Initialize Firebase
-   var config = {
-     apiKey: "AIzaSyCEoz0_1xeff3cnBZ2EXKM_F6c3wz148SA",
-     authDomain: "coffeefest-fb350.firebaseapp.com",
-     databaseURL: "https://coffeefest-fb350.firebaseio.com",
-     storageBucket: "coffeefest-fb350.appspot.com",
-     messagingSenderId: "59635288423"
-   };
-   firebase.initializeApp(config);
- </script>
 
 import React, { Component } from 'react';
 import {
