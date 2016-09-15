@@ -4,6 +4,14 @@ const {
   GraphRequestManager,
 } = FBSDK;
 
+_responseInfoCallback(error: ?Object, result: ?Object) {
+  if (error) {
+    alert('Error fetching data: ' + error.toString());
+  } else {
+    alert('Success fetching data: ' + result.toString());
+  }
+}
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
